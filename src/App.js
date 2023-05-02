@@ -1,11 +1,9 @@
 import './App.css';
-import FilterAndCheckbox from "./components/ThinkingInReact/FilterAndCheckbox";
+import EcommerceCard from './components/EcommerceCard/EcommerceCard';
 function App() {
   return (
     <div className="App ">
-   
-      <h1>Fruites</h1>
-      <FilterAndCheckbox fruiteveg={"FruiteVeg"} />
+   <EcommerceCard/>
     </div>
   );
 }
