@@ -14,30 +14,27 @@ function Cards() {
   const [cardlists,setcardlist]=useState(cardlist)
   const [instocklist, setInstockList] = useState(cardlists);
 
-  const AddToCard=(cardId)=>{
+  const AddToCard=(card)=>{
     // setAddCards(oldarray=>[...oldarray,cardItem])
     // console.log(addCardslist);
-    console.log("your id",cardId);
-    console.log(instocklist.length,"first length")
+    console.log(instocklist,"first length")
      const NewinStocklist = instocklist.map((obj) => {
        // 👇️ if id equals then remove that items from stock and mark it false
        console.log(obj.id)
-       if(obj.id===cardId){
-        console.log("faewfae")
+       if(obj.id===card.id){
         return { ...obj, instock: false };
        }
        // 👇️ otherwise return the object as is
        return obj;
 
      });
-        console.log(NewinStocklist.length, "after filter length");
-
-     setInstockList(NewinStocklist);
- const instock = instocklist.filter((card) => {
-   return card.instock;
- });
- setInstockList(instock);
-}
+     console.log(NewinStocklist,"list")
+setAddCards(oldarray => [...oldarray, card]);
+console.log(addCardslist)
+const instock = NewinStocklist.filter((card) => {
+  return card.instock;
+});
+setInstockList(instock);}
 
 // instockfilter
 const Instockfitler=()=>{
@@ -56,6 +53,7 @@ useEffect(()=>{
     <Container>
       <p className="text-end">Card count:{count}$</p>
       <Row xs={1} md={2} className="g-4">
+        {instocklist.length===0&&<h1>No cards</h1>}
         {instocklist.map((card, idx) => (
           <Col key={idx}>
             <Card>
@@ -74,7 +72,7 @@ useEffect(()=>{
                   lead-in to additional content. This content is a little bit
                   longer.
                 </Card.Text>
-                <Button variant="success" onClick={()=>{AddToCard(card.id)}}>
+                <Button variant="success" onClick={()=>{AddToCard(card)}}>
                   Add To Cart
                 </Button>
               </Card.Body>
